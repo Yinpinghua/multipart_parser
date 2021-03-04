@@ -7,7 +7,7 @@
 #define BODY                                                                \
     "--" BOUNDARY "\r\n"                                                    \
     "Content-Disposition: form-data; name=\"username\"\r\n\r\n"                 \
-     "15871155532\r\n"                                                      \
+     "yinpinghua\r\n"                                                      \
      "--" BOUNDARY "\r\n"													\
      "Content-Disposition: form-data; name=\"password\"\r\n\r\n"               \
      "xw123456\r\n"                                                        \
@@ -19,3 +19,4 @@
 	}
 
     parser.get_multipart_data();
+    
