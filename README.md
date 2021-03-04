@@ -1,6 +1,6 @@
 # multipart_parser
 
-#简单的multifrom-data解析
+#简单的multifrom-data解析，可以简单解析http body部分的数据
 
 #例子：
 
