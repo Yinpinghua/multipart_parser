@@ -99,7 +99,7 @@ public:
 	explicit multipart_parser(const std::string & boundary_str);
 	~multipart_parser() = default;
 	size_t parser_data(const char* data,size_t size);
-	void get_multipart_data();
+	std::map<std::string, std::string> get_multipart_data();
 private:
 	int on_body_begin()
 	{
