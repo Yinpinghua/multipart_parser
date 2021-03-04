@@ -219,7 +219,7 @@ error:
 	return p - data;
 }
 
-void multipart_parser::get_multipart_data()
+std::map<std::string, std::string> multipart_parser::get_multipart_data()
 {
 	std::map<std::string, std::string>multipart_datas;
 	auto iter_begin = parts_.begin();
@@ -229,20 +229,17 @@ void multipart_parser::get_multipart_data()
 		if (iter_find != iter_begin->headers.end()){
 			std::string value = iter_find->second;
 			auto beg_pos = value.find("\"");
-			if (beg_pos  == std::string::npos){
-				return;
+			if (beg_pos  != std::string::npos){
+				beg_pos++;
+				auto end_pos = value.rfind("\"");
+				if (end_pos != std::string::npos) {
+					key = value.substr(beg_pos, end_pos - beg_pos);
+				}
 			}
-
-			beg_pos++;
-			auto end_pos = value.rfind("\"");
-			if (end_pos ==std::string::npos){
-				return;
-			}
-
-			key = value.substr(beg_pos, end_pos - beg_pos);
-
 		}
 		std::string value = iter_begin->body;
 		multipart_datas.emplace(key, value);
 	}
+
+	return std::move(multipart_datas);
 }
